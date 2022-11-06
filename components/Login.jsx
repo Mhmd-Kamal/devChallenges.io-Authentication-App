@@ -6,13 +6,8 @@ function Register() {
   const passwordRef = useRef();
   return (
     <div>
-      <p className='text-lg font-semibold text-light-text'>
-        Join thousands of learners from around the world
-      </p>
-      <p className='pt-4 text-light-text'>
-        Master web development by making real-life projects. There are multiple
-        paths for you to choose
-      </p>
+      <p className='text-lg font-semibold text-light-text'>Login</p>
+
       <form className='flex flex-col py-8 '>
         <div
           onClick={() => emailRef.current.focus()}
@@ -43,7 +38,7 @@ function Register() {
           />
         </div>
         <button className='py-2 text-white rounded-lg bg-btnBG' type='submit'>
-          Start coding now
+          Login
         </button>
       </form>
       <p className='pb-5 text-sm text-center text-icons'>
@@ -64,7 +59,8 @@ function Register() {
         </li>
       </ul>
       <p className='pb-5 text-sm text-center text-icons pt-7'>
-        Adready a member?<span className='text-blueText'> Login</span>
+        Don’t have an account yet?
+        <span className='text-blueText'> Register</span>
       </p>
     </div>
   );

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Register from '../components/Register';
+import Login from '../components/Login';
 
 const Home = () => {
   return (
@@ -21,7 +22,8 @@ const Home = () => {
       </header>
 
       <main className='flex flex-col flex-1 w-full'>
-        <Register />
+        {/* <Register /> */}
+        <Login />
       </main>
     </div>
   );
