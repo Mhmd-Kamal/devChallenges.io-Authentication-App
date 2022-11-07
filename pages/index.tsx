@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Register from '../components/Register';
 import Login from '../components/Login';
 import PersonalPage from '../components/PersonalPage';
-
+import EditPage from '../components/EditPage';
 const Home = () => {
   return (
     <div className='flex flex-col min-h-screen p-5 items-centerS'>
@@ -25,7 +25,8 @@ const Home = () => {
       <main className='flex flex-col flex-1 w-full'>
         {/* <Register /> */}
         {/* <Login /> */}
-        <PersonalPage />
+        {/* <PersonalPage /> */}
+        <EditPage />
       </main>
     </div>
   );

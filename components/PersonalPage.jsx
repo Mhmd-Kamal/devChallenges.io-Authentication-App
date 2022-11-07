@@ -18,7 +18,7 @@ function PersonalPage() {
               Some info may be visible to other people
             </p>
           </div>
-          <button className='px-8 py-2 font-medium border border-icons rounded-xl text-icons text-'>
+          <button className='px-8 py-2 font-medium border cursor-pointer border-icons rounded-xl text-icons text-'>
             Edit
           </button>
         </div>
