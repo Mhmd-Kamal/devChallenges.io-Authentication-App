@@ -1,8 +1,8 @@
 import React from 'react';
 
-function PersonalPage() {
+function PersonalPage({ setOnEdit }) {
   return (
-    <div className='pt-3'>
+    <div className='flex-shrink-0 w-full pt-3'>
       <h1 className='mb-2 text-2xl text-center'>Personal info</h1>
       <p className='mb-10 text-sm font-light text-center'>
         Basic info, like your name and photo
@@ -11,14 +11,17 @@ function PersonalPage() {
         id='profile-data'
         className='flex flex-col divide-y divide-dark-text'
       >
-        <div className='flex items-center justify-between gap-4 py-5'>
-          <div>
+        <div className='flex items-center justify-between py-5'>
+          <div className='w-[190px]'>
             <p className='mb-2 text-2xl'>Profile</p>
             <p className='text-sm font-medium text-icons'>
               Some info may be visible to other people
             </p>
           </div>
-          <button className='px-8 py-2 font-medium border cursor-pointer border-icons rounded-xl text-icons text-'>
+          <button
+            onClick={() => setOnEdit(true)}
+            className='px-8 py-2 font-medium border cursor-pointer border-icons rounded-xl text-icons text-'
+          >
             Edit
           </button>
         </div>

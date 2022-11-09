@@ -1,11 +1,11 @@
 import { ChevronLeftIcon, CameraIcon } from '@heroicons/react/20/solid';
 import { useRef } from 'react';
 
-function EditPage() {
+function EditPage({ setOnEdit }) {
   const imageUploadRef = useRef();
 
   return (
-    <div className='pt-3'>
+    <div className='flex-shrink-0 w-full pt-3'>
       <button className='flex items-center mb-8 cursor-pointer'>
         <ChevronLeftIcon className='mr-2 w-7 text-blueText' />
         <span className='text-lg text-blueText'>Back</span>
@@ -121,6 +121,7 @@ function EditPage() {
             />
           </div>
           <button
+            onClick={() => setOnEdit(false)}
             className='px-6 py-2 text-white rounded-lg bg-btnBG max-w-max'
             type='submit'
           >
