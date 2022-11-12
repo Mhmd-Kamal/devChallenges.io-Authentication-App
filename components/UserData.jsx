@@ -6,7 +6,7 @@ import { useRef, useState, useEffect } from 'react';
 function UserData() {
   const ref = useRef();
   const [width, setWidth] = useState(null);
-  const [onEdit, setOnEdit] = useState(true);
+  const [onEdit, setOnEdit] = useState(false);
 
   function updateWindowWidth() {
     setWidth(-1 * ref.current.offsetWidth);
@@ -14,6 +14,7 @@ function UserData() {
   }
 
   useEffect(() => {
+    setWidth(-ref.current.offsetWidth);
     window.addEventListener('resize', updateWindowWidth);
     return () => removeEventListener('resize', updateWindowWidth);
   }, []);
@@ -21,7 +22,7 @@ function UserData() {
   return (
     <div
       ref={ref}
-      className='flex transition-transform duration-500'
+      className='flex transition-transform duration-300'
       style={{ transform: `translate(${onEdit ? width : 0}px)` }}
     >
       <PersonalPage setOnEdit={setOnEdit} />

@@ -6,7 +6,10 @@ function EditPage({ setOnEdit }) {
 
   return (
     <div className='flex-shrink-0 w-full pt-3'>
-      <button className='flex items-center mb-8 cursor-pointer'>
+      <button
+        onClick={() => setOnEdit(false)}
+        className='flex items-center mb-8 cursor-pointer'
+      >
         <ChevronLeftIcon className='mr-2 w-7 text-blueText' />
         <span className='text-lg text-blueText'>Back</span>
       </button>

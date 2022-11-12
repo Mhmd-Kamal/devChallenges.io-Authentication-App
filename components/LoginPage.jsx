@@ -1,7 +1,9 @@
 import { LockClosedIcon, EnvelopeIcon } from '@heroicons/react/24/solid';
 import { useRef } from 'react';
 
-function Register() {
+import OAuthLogin from './OAuthLogin';
+
+export default function LoginPage({}) {
   const emailRef = useRef();
   const passwordRef = useRef();
   return (
@@ -41,23 +43,8 @@ function Register() {
           Login
         </button>
       </form>
-      <p className='pb-5 text-sm text-center text-icons'>
-        or continue with these social profile
-      </p>
-      <ul className='flex justify-center gap-5'>
-        <li>
-          <img src='/Google.svg' alt='google signup link' />
-        </li>
-        <li>
-          <img src='/Facebook.svg' alt='facebook signup link' />
-        </li>
-        <li>
-          <img src='/Twitter.svg' alt='twitter signup link' />
-        </li>
-        <li>
-          <img src='/Github.svg' alt='github signup link' />
-        </li>
-      </ul>
+      <OAuthLogin />
+
       <p className='pb-5 text-sm text-center text-icons pt-7'>
         Don’t have an account yet?
         <span className='text-blueText'> Register</span>
@@ -65,5 +52,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;
