@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { signOut } from 'next-auth/react';
 import {
   UserCircleIcon,
   UserGroupIcon,
@@ -9,8 +9,21 @@ import {
 export default function NavBar() {
   const [showMenu, setShowMenu] = useState(false);
 
+  useEffect(() => {
+    const removeMenu = (e) => {
+      if (e.target.id !== 'NavBar' && e.target.offsetParent.id !== 'NavBar') {
+        setShowMenu(false);
+      }
+    };
+    window.addEventListener('click', removeMenu);
+
+    return () => {
+      window.removeEventListener('click', removeMenu);
+    };
+  }, []);
+
   return (
-    <header className='relative flex justify-between pb-7'>
+    <header id='NavBar' className='relative flex justify-between pb-7'>
       <img src={'/devchallenges.svg'} alt='logo' />
       <button onClick={() => setShowMenu(!showMenu)}>
         <img
@@ -21,6 +34,7 @@ export default function NavBar() {
       </button>
 
       <div
+        id='nav-menu'
         className={`${
           showMenu ? 'opacity-100 ' : ' opacity-0'
         } absolute transition-all duration-500 right-0 top-10 z-10 w-48 py-4 px-3 border border-dark-text rounded-xl bg-white font-medium text-xs text-inputLabel`}
@@ -29,11 +43,14 @@ export default function NavBar() {
           <UserCircleIcon className='w-4' />
           <p>My Profile</p>
         </div>
-        <div className='flex gap-3 pb-5 py-3 px-4 border-b-dark-text border-b'>
+        <div className='flex gap-3 px-4 py-3 pb-5 border-b border-b-dark-text'>
           <UserGroupIcon className='w-4' />
           <p>Group Chat</p>
         </div>
-        <button className='flex gap-3 pt-5 py-3 px-4 text-pinkText'>
+        <button
+          onClick={() => signOut()}
+          className='flex gap-3 px-4 py-3 pt-5 text-pinkText'
+        >
           <ArrowRightOnRectangleIcon className='w-4' />
           <p>Logout</p>
         </button>
