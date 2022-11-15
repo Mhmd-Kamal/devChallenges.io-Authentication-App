@@ -2,16 +2,16 @@ import React from 'react';
 
 function PersonalPage({ setOnEdit }) {
   return (
-    <div className='flex-shrink-0 w-full pt-3'>
+    <div className='flex-shrink-0 w-full pt-3 '>
       <h1 className='mb-2 text-2xl text-center'>Personal info</h1>
       <p className='mb-10 text-sm font-light text-center'>
         Basic info, like your name and photo
       </p>
       <section
         id='profile-data'
-        className='flex flex-col divide-y divide-dark-text'
+        className='flex flex-col divide-y divide-dark-text md:border border-dark-text rounded-xl'
       >
-        <div className='flex items-center justify-between py-5'>
+        <div className='flex items-center justify-between py-5 md:py-7 md:px-12'>
           <div className='w-[190px]'>
             <p className='mb-2 text-2xl'>Profile</p>
             <p className='text-sm font-medium text-icons'>
@@ -25,7 +25,7 @@ function PersonalPage({ setOnEdit }) {
             Edit
           </button>
         </div>
-        <div className='flex items-center justify-between py-4'>
+        <div className='flex items-center justify-between py-4 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>PHOTO</p>
           <img
             src='/man.png'
@@ -33,21 +33,21 @@ function PersonalPage({ setOnEdit }) {
             className='w-20 rounded-lg aspect-square'
           />
         </div>
-        <div className='flex items-center justify-between py-9'>
+        <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>NAME</p>
           <p className='font-medium text-dark-bg '>Xanthe Neal</p>
         </div>
-        <div className='flex items-center justify-between py-9'>
+        <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>BIO</p>
           <p className='font-medium text-dark-bg '>
             I am a software developer...
           </p>
         </div>
-        <div className='flex items-center justify-between py-9'>
+        <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>EMAIL</p>
           <p className='font-medium text-dark-bg '>xanthe.neal@gmail.com</p>
         </div>
-        <div className='flex items-center justify-between py-9'>
+        <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>PASSWORD</p>
           <p className='font-medium text-dark-bg '>************</p>
         </div>

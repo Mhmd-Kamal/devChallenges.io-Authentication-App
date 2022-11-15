@@ -11,7 +11,7 @@ const Home = () => {
   const { data: session } = useSession();
   console.log(session);
   return (
-    <div className='flex flex-col min-h-screen p-5 bg-[#FAFAFB]'>
+    <div className='flex flex-col min-h-screen items-center p-5 bg-[#FAFAFB]'>
       <Head>
         <title>Create Next App</title>
         <link rel='icon' href='/devchallenges.png' />
@@ -19,7 +19,7 @@ const Home = () => {
 
       <NavBar />
 
-      <main className='flex flex-col flex-1 w-full overflow-hidden'>
+      <main className='flex flex-col items-center flex-1 w-full overflow-clip max-w-[845px]'>
         <UserData />
       </main>
     </div>

@@ -4,6 +4,7 @@ import {
   UserCircleIcon,
   UserGroupIcon,
   ArrowRightOnRectangleIcon,
+  PlayIcon,
 } from '@heroicons/react/20/solid';
 
 export default function NavBar() {
@@ -11,7 +12,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const removeMenu = (e) => {
-      if (e.target.id !== 'NavBar' && e.target.offsetParent.id !== 'NavBar') {
+      if (e.target?.id !== 'NavBar' && e.target.offsetParent?.id !== 'NavBar') {
         setShowMenu(false);
       }
     };
@@ -23,21 +24,35 @@ export default function NavBar() {
   }, []);
 
   return (
-    <header id='NavBar' className='relative flex justify-between pb-7'>
+    <header
+      id='NavBar'
+      className='relative flex justify-between w-full pb-7 md:px-16'
+    >
       <img src={'/devchallenges.svg'} alt='logo' />
-      <button onClick={() => setShowMenu(!showMenu)}>
+      <button
+        className='flex items-center gap-3'
+        onClick={() => setShowMenu(!showMenu)}
+      >
         <img
           src='/man.png'
           alt='Avatar picture'
           className='w-8 rounded-md aspect-square'
+        />
+        <p className='hidden text-xs font-bold md:block text-light-text'>
+          Xanthe Neal
+        </p>
+        <PlayIcon
+          id='menu-icon'
+          style={{ transform: `rotate(${showMenu ? '210' : '30'}deg)` }}
+          className='w-2 transition-all text-light-text md:block hidden'
         />
       </button>
 
       <div
         id='nav-menu'
         className={`${
-          showMenu ? 'opacity-100 ' : ' opacity-0'
-        } absolute transition-all duration-500 right-0 top-10 z-10 w-48 py-4 px-3 border border-dark-text rounded-xl bg-white font-medium text-xs text-inputLabel`}
+          showMenu ? 'block' : 'hidden'
+        } absolute transition-all duration-500 right-0 md:right-16 top-10 z-10 w-48 py-4 px-3 border border-dark-text rounded-xl bg-white font-medium text-xs text-inputLabel`}
       >
         <div className='flex gap-3 py-3 px-4 bg-[#f2f2f2] rounded-lg'>
           <UserCircleIcon className='w-4' />

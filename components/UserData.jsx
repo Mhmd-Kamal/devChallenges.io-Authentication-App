@@ -22,7 +22,7 @@ function UserData() {
   return (
     <div
       ref={ref}
-      className='flex transition-transform duration-300'
+      className='flex w-full transition-transform duration-300'
       style={{ transform: `translate(${onEdit ? width : 0}px)` }}
     >
       <PersonalPage setOnEdit={setOnEdit} />

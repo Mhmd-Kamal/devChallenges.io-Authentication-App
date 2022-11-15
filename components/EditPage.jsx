@@ -1,40 +1,41 @@
-import { ChevronLeftIcon, CameraIcon } from '@heroicons/react/20/solid';
-import { useRef } from 'react';
+import {CameraIcon, ChevronLeftIcon} from '@heroicons/react/20/solid';
+import {useRef} from 'react';
 
-function EditPage({ setOnEdit }) {
+function EditPage({setOnEdit}) {
   const imageUploadRef = useRef();
 
   return (
-    <div className='flex-shrink-0 w-full pt-3'>
-      <button
-        onClick={() => setOnEdit(false)}
-        className='flex items-center mb-8 cursor-pointer'
-      >
-        <ChevronLeftIcon className='mr-2 w-7 text-blueText' />
-        <span className='text-lg text-blueText'>Back</span>
-      </button>
+      <div className='flex-shrink-0 w-full pt-3'>
+        <button
+            onClick={() => setOnEdit(false)}
+            className='flex items-center mb-8 cursor-pointer'
+        >
+          <ChevronLeftIcon className='mr-2 w-7 text-blueText'/>
+          <span className='text-lg text-blueText'>Back</span>
+        </button>
 
-      <section>
-        <h1 className='mb-2 text-2xl'>Change Info</h1>
-        <p className='text-sm font-medium text-icons'>
-          Changes will be reflected to every services
-        </p>
+        <section className='md:border border-dark-text rounded-xl md:px-12 md:py-8'>
+          <div className='max-w-[460px]'>
+            <h1 className='mb-2 text-2xl'>Change Info</h1>
+            <p className='text-sm font-medium text-icons'>
+              Changes will be reflected to every services
+            </p>
 
-        <div className='flex mt-6 gap-7'>
-          <div>
-            <label htmlFor='image' className='relative cursor-pointer'>
-              <img
-                className='w-20 rounded-lg aspect-square'
-                src='man.png'
-                alt='Avatar Image'
-              />
-              <CameraIcon className='absolute w-6 text-white -translate-x-1/2 -translate-y-1/2 inset-1/2' />
-            </label>
-            <input
-              ref={imageUploadRef}
-              className='hidden'
-              type='file'
-              name='image'
+            <div className='flex mt-6 gap-7'>
+              <div>
+                <label htmlFor='image' className='relative cursor-pointer'>
+                  <img
+                      className='w-20 rounded-lg aspect-square'
+                      src='/man.png'
+                      alt='Avatar Image'
+                  />
+                  <CameraIcon className='absolute w-6 text-white -translate-x-1/2 -translate-y-1/2 inset-1/2'/>
+                </label>
+                <input
+                    ref={imageUploadRef}
+                    className='hidden'
+                    type='file'
+                    name='image'
               id='image'
             />
           </div>
@@ -73,7 +74,6 @@ function EditPage({ setOnEdit }) {
             <textarea
               className='w-full h-24 p-4 border rounded-xl border-inputBorder placeholder:text-inputBorder'
               placeholder='Enter your bio...'
-              type='text'
               name='bio'
               id='bio'
             />
@@ -116,21 +116,22 @@ function EditPage({ setOnEdit }) {
               Password
             </label>
             <input
-              className='p-4 border rounded-xl border-inputBorder placeholder:text-inputBorder'
-              placeholder='Enter your password...'
-              type='password'
-              name='password'
-              id='password'
+                className='p-4 border rounded-xl border-inputBorder placeholder:text-inputBorder'
+                placeholder='Enter your password...'
+                type='password'
+                name='password'
+                id='password'
             />
           </div>
           <button
-            onClick={() => setOnEdit(false)}
-            className='px-6 py-2 text-white rounded-lg bg-btnBG max-w-max'
-            type='submit'
+              onClick={() => setOnEdit(false)}
+              className='px-6 py-2 text-white rounded-lg bg-btnBG max-w-max'
+              type='submit'
           >
             Save
           </button>
         </div>
+          </div>
       </section>
     </div>
   );
