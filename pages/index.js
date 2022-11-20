@@ -43,6 +43,6 @@ export async function getServerSideProps(ctx) {
       },
     };
   }
-
-  return { props: { session } };
+  console.log(session);
+  return { props: { session: session.user.email } };
 }
