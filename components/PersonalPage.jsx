@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PersonalPage({ setOnEdit }) {
+function PersonalPage({ setOnEdit, user }) {
   return (
     <div className='flex-shrink-0 w-full pt-3 '>
       <h1 className='mb-2 text-2xl text-center'>Personal info</h1>
@@ -28,24 +28,30 @@ function PersonalPage({ setOnEdit }) {
         <div className='flex items-center justify-between py-4 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>PHOTO</p>
           <img
-            src='/man.png'
+            src={user.photo || '/man.png'}
             alt='Profile Avatar'
             className='w-20 rounded-lg aspect-square'
           />
         </div>
         <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>NAME</p>
-          <p className='font-medium text-dark-bg '>Xanthe Neal</p>
+          <p className='font-medium text-dark-bg '>{user.name || ''}</p>
         </div>
         <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>BIO</p>
           <p className='font-medium text-dark-bg '>
-            I am a software developer...
+            {user.bio || 'Add bio...'}
+          </p>
+        </div>
+        <div className='flex items-center justify-between py-9 md:px-12'>
+          <p className='text-sm font-medium text-inputBorder'>PHONE</p>
+          <p className='font-medium text-dark-bg '>
+            {user.phone || 'Add phone...'}
           </p>
         </div>
         <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>EMAIL</p>
-          <p className='font-medium text-dark-bg '>xanthe.neal@gmail.com</p>
+          <p className='font-medium text-dark-bg '>{user.email}</p>
         </div>
         <div className='flex items-center justify-between py-9 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>PASSWORD</p>

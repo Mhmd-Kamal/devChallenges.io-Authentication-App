@@ -3,7 +3,7 @@ import EditPage from '../components/EditPage';
 
 import { useRef, useState, useEffect } from 'react';
 
-function UserData() {
+function UserData({ user }) {
   const ref = useRef();
   const [width, setWidth] = useState(null);
   const [onEdit, setOnEdit] = useState(false);
@@ -25,8 +25,8 @@ function UserData() {
       className='flex w-full transition-transform duration-300'
       style={{ transform: `translate(${onEdit ? width : 0}px)` }}
     >
-      <PersonalPage setOnEdit={setOnEdit} />
-      <EditPage setOnEdit={setOnEdit} />
+      <PersonalPage setOnEdit={setOnEdit} user={user} />
+      <EditPage setOnEdit={setOnEdit} user={user} />
     </div>
   );
 }

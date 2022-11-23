@@ -7,9 +7,10 @@ import { authOptions } from './api/auth/[...nextauth]';
 import NavBar from '../components/NavBar';
 import UserData from '../components/UserData';
 
-const Home = () => {
+const Home = ({ user }) => {
+  // console.log(user);
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
   return (
     <div className='flex flex-col min-h-screen items-center p-5 bg-[#FAFAFB]'>
       <Head>
@@ -20,7 +21,7 @@ const Home = () => {
       <NavBar />
 
       <main className='flex flex-col items-center flex-1 w-full overflow-clip max-w-[845px]'>
-        <UserData />
+        <UserData user={user} />
       </main>
     </div>
   );
@@ -37,12 +38,17 @@ export async function getServerSideProps(ctx) {
 
   if (!session) {
     return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
+      redirect: { destination: '/login', permanent: false },
     };
   }
-  console.log(session);
-  return { props: { session: session.user.email } };
+  const protocol = ctx.req.headers['x-forwarded-proto'] || 'http';
+
+  const res = await fetch(`${protocol}://${ctx.req.headers.host}/api/user`, {
+    headers: {
+      cookie: ctx.req.headers.cookie || '',
+    },
+  });
+  const { user } = await res.json();
+
+  return { props: { user } };
 }
