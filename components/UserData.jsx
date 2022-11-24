@@ -8,6 +8,8 @@ function UserData({ user }) {
   const [width, setWidth] = useState(null);
   const [onEdit, setOnEdit] = useState(false);
 
+  const [userData, setUserData] = useState(user);
+
   function updateWindowWidth() {
     setWidth(-1 * ref.current.offsetWidth);
     setOnEdit(false);
@@ -25,8 +27,8 @@ function UserData({ user }) {
       className='flex w-full transition-transform duration-300'
       style={{ transform: `translate(${onEdit ? width : 0}px)` }}
     >
-      <PersonalPage setOnEdit={setOnEdit} user={user} />
-      <EditPage setOnEdit={setOnEdit} user={user} />
+      <PersonalPage setOnEdit={setOnEdit} userData={userData} />
+      <EditPage setOnEdit={setOnEdit} userData={userData} setUserData={setUserData}/>
     </div>
   );
 }

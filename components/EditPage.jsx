@@ -1,10 +1,10 @@
 import { CameraIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { useRef, useState } from 'react';
 
-function EditPage({ setOnEdit, user }) {
+function EditPage({ setOnEdit, userData, setUserData }) {
   const imageUploadRef = useRef();
 
-  const [newUser, setNewUser] = useState(user);
+  const [newUser, setNewUser] = useState(userData);
 
   function handleChange(e) {
     const { value, name } = e.target;
@@ -12,6 +12,24 @@ function EditPage({ setOnEdit, user }) {
     console.log(newUser);
   }
 
+  const handleSubmit = async () => {
+    setOnEdit(false);
+    setUserData(newUser);
+    const res = await fetch('/api/user', {
+      method: 'PUT',
+      body: JSON.stringify({ newUser }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+
+    if (!res.ok) {
+      setOnEdit(true);
+      setUserData(userData);
+    }
+  };
   return (
     <div className='flex-shrink-0 w-full pt-3'>
       <button
@@ -140,7 +158,7 @@ function EditPage({ setOnEdit, user }) {
               />
             </div>
             <button
-              onClick={() => setOnEdit(false)}
+              onClick={handleSubmit}
               className='px-6 py-2 text-white rounded-lg bg-btnBG max-w-max'
               type='submit'
             >
