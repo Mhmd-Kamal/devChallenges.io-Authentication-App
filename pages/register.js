@@ -100,8 +100,8 @@ function Register() {
           <OAuthLogin />
           <p className='pb-5 text-sm text-center text-icons pt-7'>
             Adready a member?
-            <Link href={'/login'}>
-              <a className='pl-1 text-blueText'>Login</a>
+            <Link href={'/login'} className='pl-1 text-blueText'>
+              Login
             </Link>
           </p>
         </main>

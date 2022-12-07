@@ -30,25 +30,55 @@ const Home = ({ user }) => {
 export default Home;
 
 export async function getServerSideProps(ctx) {
-  const session = await unstable_getServerSession(
-    ctx.req,
-    ctx.res,
-    authOptions
-  );
+  try {
+    const session = await unstable_getServerSession(
+      ctx.req,
+      ctx.res,
+      authOptions
+    );
 
-  if (!session) {
+    if (!session) {
+      return {
+        redirect: { destination: '/login', permanent: false },
+      };
+    }
+
+    const protocol = ctx.req.headers['x-forwarded-proto'] || 'http';
+
+    const res = await fetch(`${protocol}://${ctx.req.headers.host}/api/user`, {
+      headers: {
+        cookie: ctx.req.headers.cookie || '',
+      },
+    });
+
+    const { user } = await res.json();
+
+    if (user) {
+      return { props: { user } };
+    }
+
+    const signupRes = await fetch(
+      `${protocol}://${ctx.req.headers.host}/api/auth/signup`,
+      {
+        method: 'POST',
+        body: JSON.stringify(session.user),
+        headers: {
+          'content-type': 'application/json',
+          cookie: ctx.req.headers.cookie || '',
+        },
+      }
+    );
+    console.log({ signupRes }, signupRes.ok);
+
+    if (signupRes.ok) {
+      return { props: { user: session.user } };
+    }
+
+    return { props: { user: session.user } };
+  } catch (error) {
+    console.log(error);
     return {
       redirect: { destination: '/login', permanent: false },
     };
   }
-  const protocol = ctx.req.headers['x-forwarded-proto'] || 'http';
-
-  const res = await fetch(`${protocol}://${ctx.req.headers.host}/api/user`, {
-    headers: {
-      cookie: ctx.req.headers.cookie || '',
-    },
-  });
-  const { user } = await res.json();
-
-  return { props: { user } };
 }

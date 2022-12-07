@@ -15,7 +15,7 @@ export default function Login() {
   const passwordRef = useRef();
 
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
 
   async function handleUserSignin(e) {
     e.preventDefault();
@@ -85,8 +85,8 @@ export default function Login() {
 
           <p className='pb-5 text-sm text-center text-icons pt-7'>
             Don’t have an account yet?
-            <Link href={'/register'}>
-              <a className='pl-1 text-blueText'>Register</a>
+            <Link href={'/register'} className='pl-1 text-blueText'>
+              Register
             </Link>
           </p>
         </main>

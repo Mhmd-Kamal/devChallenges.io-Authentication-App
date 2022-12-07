@@ -22,18 +22,21 @@ export default async function handler(req, res) {
         email: session.user.email,
       });
 
-      const { password, ...rest } = user;
+      // const { password, ...rest } = user;
+      delete user.password;
 
       client.close();
-      res.status(201).json({ user: rest });
+      res.status(201).json({ user });
     } catch (error) {
       res.status(500).json({ message: 'uh-oh, error happened!' });
       console.log(error);
     }
   }
+
   if (req.method === 'PUT') {
     const { newUser } = req.body;
     const { _id, ...newData } = newUser;
+
     try {
       await client.connect();
       const db = client.db('Next-Auth');
