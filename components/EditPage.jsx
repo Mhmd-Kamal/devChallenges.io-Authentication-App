@@ -52,7 +52,7 @@ function EditPage({ setOnEdit, userData, setUserData }) {
               <label htmlFor='image' className='relative cursor-pointer'>
                 <img
                   className='w-20 rounded-lg aspect-square'
-                  src={newUser.photo || '/man.png'}
+                  src={newUser.image || '/man.png'}
                   alt='Avatar Image'
                 />
                 <CameraIcon className='absolute w-6 text-white -translate-x-1/2 -translate-y-1/2 inset-1/2' />

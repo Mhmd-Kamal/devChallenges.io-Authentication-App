@@ -28,7 +28,7 @@ function PersonalPage({ setOnEdit, userData }) {
         <div className='flex items-center justify-between py-4 md:px-12'>
           <p className='text-sm font-medium text-inputBorder'>PHOTO</p>
           <img
-            src={userData.photo || '/man.png'}
+            src={userData.image || '/man.png'}
             alt='Profile Avatar'
             className='w-20 rounded-lg aspect-square'
           />
