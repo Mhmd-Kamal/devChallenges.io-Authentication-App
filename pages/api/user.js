@@ -15,7 +15,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       await client.connect();
-      const db = client.db('Next-Auth');
+      const db = client.db('auth-app');
       const users = db.collection('users');
 
       const user = await users.findOne({
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     try {
       await client.connect();
-      const db = client.db('Next-Auth');
+      const db = client.db('auth-app');
       const users = db.collection('users');
 
       if (!('password' in newData)) {

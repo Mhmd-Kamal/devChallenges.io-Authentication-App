@@ -9,6 +9,12 @@ export default async function handler(req, res) {
   const session = await unstable_getServerSession(req, res, authOptions);
 
   const { email, password } = req.body;
+
+  const client = new MongoClient(process.env.MONGO_URI);
+  await client.connect();
+  const db = client.db('auth-app');
+  const users = db.collection('users');
+
   try {
     if (!session) {
       if (!email || !email.includes('@')) {
@@ -21,11 +27,6 @@ export default async function handler(req, res) {
           .status(422)
           .json({ message: 'Password should be at least 8 characyers.' });
       }
-      const client = new MongoClient(process.env.MONGO_URI);
-
-      await client.connect();
-      const db = client.db('Next-Auth');
-      const users = db.collection('users');
       const foundUser = await users.findOne({ email });
 
       if (foundUser) {
@@ -35,18 +36,15 @@ export default async function handler(req, res) {
           .json({ message: 'User already exists, please login.' });
       }
 
-      await insertUser({ email, password: await hash(password, 12) });
+      await users.insertOne({ email, password: await hash(password, 12) });
+      client.close();
+      return res.status(201).json({ message: 'New user created.' });
     } else {
-      await insertUser(session.user);
+      await users.insertOne(session.user);
+      client.close();
+      return res.status(201).json({ message: 'New user created.' });
     }
   } catch (error) {
     console.log(error);
   }
-}
-
-async function insertUser(user) {
-  const newUser = await db.collection('users').insertOne(user);
-
-  client.close();
-  return res.status(201).json({ message: 'New user created.' });
 }

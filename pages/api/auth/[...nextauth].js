@@ -16,7 +16,7 @@ export const authOptions = {
 
         await client.connect();
 
-        const db = client.db('Next-Auth');
+        const db = client.db('auth-app');
         const users = db.collection('users');
 
         const user = await users.findOne({ email: credentials.email });
